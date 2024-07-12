@@ -44,7 +44,7 @@ const MyComponent = () => {
   };
 
   return (
-    <Container>
+    <Container className='bg-black text-white pb-2 rounded shadow'>
       <section>
         <h3 className="text-xl font-semibold font-roboto mb-4">
           Reserve Lab Room and Equipment
@@ -124,7 +124,7 @@ const MyComponent = () => {
           </div>
           <button
             type="submit"
-            className="w-full p-2 bg-blue-600 text-white rounded font-roboto"
+            className="w-full p-2 bg-white text-black rounded font-roboto "
             disabled={isLoading}
           >
             {isLoading ? 'Submitting...' : 'Submit'}

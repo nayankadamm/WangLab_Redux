@@ -3,11 +3,15 @@ import { useGetHistQuery } from '../redux/HistApi'
  const History = () => {
     const {data:hist=[], error,isLoading} = useGetHistQuery();
   return (
-    <div>
-        <h3 style={{ textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>Registered history</h3>
+    <div >
+        
 
 
-<div className="bg-white p-4 rounded shadow">
+<div style={{
+      marginTop: '20px',}} className="bg-black text-white p-4 rounded shadow">
+<p className="font-roboto" >
+                    Registerd History 
+                  </p>
             {hist.length === 0 ? (
               <p className="font-roboto">No slots reserved yet.</p>
             ) : (

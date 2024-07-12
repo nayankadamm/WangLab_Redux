@@ -1,9 +1,8 @@
-import { Row,Col,Container} from 'react-bootstrap';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
-
+import { Row, Col, Container } from "react-bootstrap";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
 
 const NavB = () => {
   return (
@@ -11,21 +10,28 @@ const NavB = () => {
       <Container>
         <Row className="w-100">
           <Col>
-            <Navbar.Brand href="#home">Wang-Lab</Navbar.Brand>
+          <Link to="/" style={{ textDecoration: "none"}}>
+          <Navbar.Brand href="#home">Wang-Lab</Navbar.Brand>
+          </Link>
+            
           </Col>
           <Col className="text-end">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-              <Nav>
-               
-              <NavDropdown
-          
+            <Navbar.Collapse
+              id="basic-navbar-nav"
+              className="justify-content-end"
             >
-                  <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Your Bookings</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">About Lab</NavDropdown.Item>
-                  
-                  
+              <Nav>
+                <NavDropdown>
+                  <Link to="/profile" style={{ textDecoration: "none" }}>
+                    <NavDropdown.Item as="div">Profile</NavDropdown.Item>
+                  </Link>
+                  <Link to="/userhistory" style={{ textDecoration: "none" }}>
+                    <NavDropdown.Item as="div">Your Bookings</NavDropdown.Item>
+                  </Link>
+                  <Link to="/about" style={{ textDecoration: "none" }}>
+                    <NavDropdown.Item as="div">About Lab</NavDropdown.Item>
+                  </Link>
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>

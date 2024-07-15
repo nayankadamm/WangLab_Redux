@@ -10,25 +10,32 @@ import Profile from './components/Profile';
 import AboutLab from './components/AboutLab';
 import Userhist from './components/Userhist';
 import NavB from './components/Navbar';
+import Login from './components/Login';
+import Register from './components/Register';
 import { Container } from 'react-bootstrap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
-        <Container>
+    <Container>
+    <Router>
+        
         <NavB/>
-        </Container>
+       
         
         <Routes>
          <Route path='/' element={<App/>}/>
          <Route path='/profile' element={<Profile/>}/>
          <Route path='/userhistory' element={<Userhist/>}/>
          <Route path='/about' element={<AboutLab/>}/>
+         <Route path='/register' element={<Register/>}/>
+         <Route path='/login' element={<Login/>}/>
         </Routes>
       </Router>
     
+          </Container>
+      
     </Provider>
     
   </React.StrictMode>

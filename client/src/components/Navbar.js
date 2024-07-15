@@ -10,8 +10,8 @@ const NavB = () => {
       <Container>
         <Row className="w-100">
           <Col>
-          <Link to="/" style={{ textDecoration: "none"}}>
-          <Navbar.Brand href="#home">Wang-Lab</Navbar.Brand>
+          <Link to="/" className="no-underline">
+          <Navbar.Brand  href="/">Wang-Lab</Navbar.Brand>
           </Link>
             
           </Col>
@@ -31,6 +31,9 @@ const NavB = () => {
                   </Link>
                   <Link to="/about" style={{ textDecoration: "none" }}>
                     <NavDropdown.Item as="div">About Lab</NavDropdown.Item>
+                  </Link>
+                  <Link to="/Login" style={{ textDecoration: "none" }}>
+                    <NavDropdown.Item as="div">Login</NavDropdown.Item>
                   </Link>
                 </NavDropdown>
               </Nav>

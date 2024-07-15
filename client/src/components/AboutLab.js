@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 
 export default function AboutLab() {
   return (
-    <Container className='bg-black text-white pb-2 rounded shadow'>
+    <Container className='bg-black text-white mt-4 pb-3 rounded shadow'>
         <header className="mb-6">
         <h1 className="text-4xl font-bold text-center font-roboto text-blue-500">
           University of California, Irvine

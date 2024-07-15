@@ -1,14 +1,12 @@
 import React from 'react'
 import { useGetHistQuery } from '../redux/HistApi'
+import { Container } from 'react-bootstrap';
  const History = () => {
     const {data:hist=[], error,isLoading} = useGetHistQuery();
   return (
-    <div >
-        
-
-
-<div style={{
-      marginTop: '20px',}} className="bg-black text-white p-4 rounded shadow">
+  
+    <div style={{
+      marginTop: '20px',}} className="bg-black text-white rounded shadow p-4">
 <p className="font-roboto" >
                     Registerd History 
                   </p>
@@ -25,7 +23,11 @@ import { useGetHistQuery } from '../redux/HistApi'
               ))
             )}
           </div>
-    </div>
+    
+ 
+
+
+
    
   )
 }

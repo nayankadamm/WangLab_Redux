@@ -44,7 +44,7 @@ const MyComponent = () => {
   };
 
   return (
-    <Container className='bg-black text-white pb-2 rounded shadow'>
+    <Container className='bg-black text-white mt-4 pb-2 rounded shadow'>
       <section>
         <h3 className="text-xl font-semibold font-roboto mb-4">
           Reserve Lab Room and Equipment
@@ -97,7 +97,7 @@ const MyComponent = () => {
             <label className="block font-roboto">Select Equipment</label>
             <select
               name="multipleEquipments"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-black"
               value={form.multipleEquipments}
               onChange={multipleHandleChange}
               multiple
@@ -122,13 +122,16 @@ const MyComponent = () => {
               onChange={handleChange}
             />
           </div>
+          <div className='flex justify-center'>
           <button
             type="submit"
-            className="w-full p-2 bg-white text-black rounded font-roboto "
+            className="p-2 bg-white text-black rounded font-roboto w-32 flex justify-center "
             disabled={isLoading}
           >
             {isLoading ? 'Submitting...' : 'Submit'}
           </button>
+          </div>
+          
           {isError && <p className="text-red-500">Error: {error.message}</p>}
         </form>
       </section>

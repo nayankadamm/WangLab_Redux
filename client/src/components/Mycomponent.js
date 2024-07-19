@@ -1,10 +1,15 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSetHistMutation, useGetHistQuery } from '../redux/HistApi';
+import { useGetuserQuery } from '../redux/authApi';
 
 const MyComponent = () => {
-  const [setHistMutation, { isLoading, isError, error }] = useSetHistMutation();
+  const {data:user=[]}=useGetuserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+;
+  const [setHistMutation, { isLoading, isError, error,refetch }] = useSetHistMutation();
   const [form, setForm] = useState({
     name: "",
     date: "",
@@ -12,8 +17,15 @@ const MyComponent = () => {
     endTime: "",
     multipleEquipments: [], // Ensure this matches what the backend expects
     otherEquipment: "",
+    user:user.id
   });
-
+  useEffect(() => {
+   
+    if (user) {
+      setForm((prevForm) => ({ ...prevForm, 
+        name: user.name,user: user.id }));
+    }
+  }, [user]);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -35,6 +47,7 @@ const MyComponent = () => {
         endTime: "",
         multipleEquipments: [],
         otherEquipment: "",
+        user:user.id
       });
       alert('Data submitted successfully');
     } catch (err) {
@@ -55,18 +68,18 @@ const MyComponent = () => {
             <input
               type="text"
               name="name"
-              className="w-full p-2 border rounded"
+              className=" text-black w-full p-2 border rounded"
               placeholder="Enter your name"
               value={form.name}
               onChange={handleChange}
             />
           </div>
           <div>
-            <label className="block font-roboto">Pick a Date</label>
+            <label className=" block font-roboto">Pick a Date</label>
             <input
               type="date"
               name="date"
-              className="w-full p-2 border rounded"
+              className="  text-black w-full p-2 border rounded"
               min="2024-01-01"
               max="2025-12-31"
               value={form.date}
@@ -78,7 +91,7 @@ const MyComponent = () => {
             <input
               type="time"
               name="startTime"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-black"
               value={form.startTime}
               onChange={handleChange}
             />
@@ -88,7 +101,7 @@ const MyComponent = () => {
             <input
               type="time"
               name="endTime"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-black"
               value={form.endTime}
               onChange={handleChange}
             />

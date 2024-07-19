@@ -1,8 +1,9 @@
 import React from 'react'
 import { useGetHistQuery } from '../redux/HistApi'
-import { Container } from 'react-bootstrap';
+
  const History = () => {
-    const {data:hist=[], error,isLoading} = useGetHistQuery();
+    const {data:hist=[], error,isLoading} = useGetHistQuery(undefined, {
+      refetchOnMountOrArgChange: true,});
   return (
   
     <div style={{

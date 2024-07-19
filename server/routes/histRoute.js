@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const History = require("../db/histSchema");
 const { body, validationResult } = require("express-validator");
-
+const fetchuser = require("../middleware/fetchuser")
 // Saving the new history
-router.post("/",
+router.post("/", fetchuser,
   [
     body("name").notEmpty().withMessage("Name is required"),
     body("date").notEmpty().withMessage("Date is required"),
@@ -24,6 +24,7 @@ router.post("/",
       startTime: req.body.startTime,
       endTime: req.body.endTime,
       equipment: req.body.equipment,
+      user:req.user.id
     });
 
     try {
@@ -39,6 +40,18 @@ router.post("/",
 router.get("/", async (req, res) => {
   const history = await History.find();
   res.json(history);
+});
+
+//get user specific history
+router.get("/getuserhistory", fetchuser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const history = await History.find({ user: userId }); // Assuming user field in history refers to userId
+    res.json(history);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 module.exports = router;

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useGetHistQuery } from '../redux/HistApi'
-
+import { useGetuserhistQuery } from '../redux/HistApi';
 export default function Userhist() {
-    const {data:hist=[], error,isLoading} = useGetHistQuery();
+    const {data:hist=[], error,isLoading} = useGetuserhistQuery(undefined, {
+      refetchOnMountOrArgChange: true,});
   return (
     <div style={{
       marginTop: '20px',}} className="bg-black text-white rounded shadow p-4">

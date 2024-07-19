@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { off } = require('../db/histSchema');
 const JWT_SECRET = 'NAYANKADAM';
-
+const fetchuser = require("../middleware/fetchuser")
 // Registering the user
 router.post('/register', [
     body('name').isLength({ min: 3 }),
@@ -23,7 +23,9 @@ router.post('/register', [
         if (user) {
             return res.status(400).json({ error: 'Sorry, a user with this email ID already exists' });
         }
-
+        if(req.body.password!=req.body.confirmPassword){
+            return res.status(400).json({error:"password does not match"})
+        }
         const salt = await bcrypt.genSalt(10);
         const secpass = await bcrypt.hash(req.body.password, salt);
 
@@ -79,9 +81,21 @@ async(req,res)=>{
             res.json({success,authtoken})
 
         } catch (error) {
-            
+            console.error(error.message);
+            res.status(500).send('Internal Server Error');
         }
 })
 
+//route:get user details //login required//need token
+router.post("/getuser",fetchuser,async(req,res)=>{
+    try {
+        let userID = req.user.id;
+        const user = await User.findById(userID).select("-password")
+        res.json(user)
+    }  catch (error) {
+        console.error(error.message);
+        res.status(500).send('Internal Server Error');
+    }
+})
 
 module.exports = router;

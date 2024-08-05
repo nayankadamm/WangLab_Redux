@@ -21,7 +21,7 @@ const handleChange = (e)=>{
 }
 const handleSubmit = async()=>{
     try {
-        const res = await register({...creds}).unwrap();
+             await register({...creds}).unwrap();
         setCreds({
             name:"",
             email:"",

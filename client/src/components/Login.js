@@ -13,7 +13,7 @@ const[creds,setCreds] = useState({
     password:""
 })
 const handleChange =(e)=>{
-
+        e.preventDefault()
     const{name,value}= e.target;
    setCreds({...creds,[name]:value})
 }
@@ -31,6 +31,7 @@ const handleSubmit =async(e)=>{
             localStorage.setItem("token",res.authtoken)
             navigate("/")
         }
+        window.location.reload()
        
     } catch (error) {
         console.error('Failed to submit the form:', error); // Log the error

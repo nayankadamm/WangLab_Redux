@@ -9,7 +9,8 @@ const MyComponent = () => {
     refetchOnMountOrArgChange: true,
   });
 ;
-  const [setHistMutation, { isLoading, isError, error,refetch }] = useSetHistMutation();
+  const [setHistMutation, { isLoading, isError, error}] = useSetHistMutation(undefined, {
+    refetchOnMountOrArgChange: true,});
   const [form, setForm] = useState({
     name: "",
     date: "",
